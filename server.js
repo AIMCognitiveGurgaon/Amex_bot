@@ -16,7 +16,11 @@ var connector = new builder.ChatConnector({
 
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
-
+server.get(/.*/, restify.serveStatic({
+ 	'directory': '.',
+ 	'default': 'index.html'
+ 	}));
+ 
 server.listen(config.port,function () {
 	try{
 		console.log('%s listening to %s', server.name, server.url);
@@ -69,7 +73,7 @@ bot.dialog('/personalCard', [
         switch (results.response.index) {
            
             case 0:
-                //builder.Prompts.text("We�ve the following cards for you with delighting cashback offers ! Please choose the card you�d like to have");
+                //builder.Prompts.text("We’ve the following cards for you with delighting cashback offers ! Please choose the card you’d like to have");
                 session.beginDialog('/Cashbacks');
                 break;
             case 1:
