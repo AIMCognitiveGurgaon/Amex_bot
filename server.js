@@ -15,9 +15,9 @@ var connector = new builder.ChatConnector({
 });
 
 var bot = new builder.UniversalBot(connector);
-server.post('bankerbot/v1/messages', connector.listen());
+server.post('/api/messages', connector.listen());
 
-server.listen(config.port,config.ip,function () {
+server.listen(config.port,function () {
 	try{
 		console.log('%s listening to %s', server.name, server.url);
 	}
